@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.app.Activity;
 
 import java.util.Arrays;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,20 +19,25 @@ import com.tofugear.countrypicker.CountryPickerModule;
 
 public class CountryPickerPackage implements ReactPackage {
 
-  @Override
-  public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(
-              new CountryPickerModule(reactContext)
-      );
-  }
+    @Override
+    public List<Class<? extends JavaScriptModule>> createJSModules() {
+        return Collections.emptyList();
+    }
 
-  @Override
-  public List<Class<? extends JavaScriptModule>> createJSModules() {
-      return Collections.emptyList();
-  }
 
-  @Override
-  public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-      return Arrays.<ViewManager>asList();
-  }
+    @Override
+    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+        return Arrays.asList();
+    }
+
+
+    @Override
+    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+        List<NativeModule> modules = new ArrayList<>();
+
+        modules.add(new CountryPickerModule(reactContext));
+
+        return modules;
+    }
+
 }
